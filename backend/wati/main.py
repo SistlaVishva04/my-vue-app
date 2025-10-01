@@ -73,7 +73,7 @@ app.include_router(analytics.router)
 # ---------------- CORS ----------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For dev; restrict in prod
+    allow_origins=["https://wotnot11.netlify.app/"],  # For dev; restrict in prod
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
