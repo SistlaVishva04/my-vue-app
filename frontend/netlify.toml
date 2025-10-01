@@ -1,6 +1,6 @@
 [build]
-  base = "app"      # relative to frontend/
-  publish = "app/dist"
+  base = "frontend/app"       # folder with package.json
+  publish = "dist"            # relative to base
   command = "npm install && npm run build"
 
 [dev]
