@@ -381,12 +381,7 @@ export default {
     PopUp
   },
   name: 'BroadCast1',
-  props: {
-    contactReport: {
-      type: Object,
-      required: true,
-    },
-  },
+  // Removed unused contactReport prop to fix prop warning
   data() {
     return {
 

@@ -2,7 +2,6 @@
   <main class="bg-container">
     <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-md">
 
-
       <div class="flex items-center justify-center">
         <div class="logo-div">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -12,7 +11,6 @@
         </div>
         <div class="logo"> WotNot</div>
       </div>
-
 
       <p class="text-xl sm:text-xl font-semibold text-center text-gray-800 mb pb-0">Login to your Wotnot account</p>
 
@@ -29,7 +27,6 @@
           <input type="password" id="password" v-model="password" required
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
         </div>
-
 
         <button
           class="bg-gradient-to-r from-[#075e54] via-[#089678] to-[#075e54] text-white px-6 py-3 rounded-lg shadow-lg font-medium flex items-center justify-center hover:from-[#054d45] hover:via-[#067a62] hover:to-[#054d45] transition-all duration-300"
@@ -58,7 +55,6 @@
   </main>
 </template>
 
-
 <script>
 export default {
   name: "LoginPage",
@@ -68,38 +64,40 @@ export default {
       username: '',
       password: '',
       errorMessage: '',
-      isLoading: false, 
+      isLoading: false,
     };
   },
   methods: {
     async handleLogin() {
-      this.isLoading = true; // Set loading state
-      fetch(`${this.apiUrl}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          username: this.username,
-          password: this.password
-        })
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.access_token) {
-            // Store the token in localStorage or Vuex (if using Vuex)
-            localStorage.setItem('token', data.access_token);
-            // Redirect to the dashboard
-            console.log()
-            this.$router.push('/dashboard');
-          } else {
-            // Handle login error
-            alert('Invalid Credentials Credentials');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
+      this.isLoading = true;
+      this.errorMessage = '';
+
+      try {
+        const response = await fetch(`${this.apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password
+          })
         });
+
+        const data = await response.json();
+
+        if (response.ok && data.access_token) {
+          localStorage.setItem('token', data.access_token);
+          this.$router.push('/dashboard');
+        } else {
+          this.errorMessage = data.detail || 'Invalid credentials';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        this.errorMessage = 'Something went wrong';
+      } finally {
+        this.isLoading = false;
+      }
     },
     redirectSignup() {
       this.$router.push("/signup");
@@ -107,7 +105,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .logo {
@@ -117,35 +114,13 @@ export default {
   font-size: xx-large;
   color: #075e54;
 }
-
 .bg-container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /* equivalent to min-h-screen */
-
   background-image: url("@/assets/LoginPage.png");
   background-position: center;
-  /* equivalent to bg-gray-100 */
   padding: 0 16px;
-  /* equivalent to px-4 */
-}
-
-/* Responsive padding for different screen sizes */
-@media (min-width: 640px) {
-
-  /* equivalent to sm:px-6 */
-  .container {
-    padding: 0 24px;
-  }
-}
-
-@media (min-width: 1024px) {
-
-  /* equivalent to lg:px-8 */
-  .container {
-    padding: 0 32px;
-  }
 }
 </style>

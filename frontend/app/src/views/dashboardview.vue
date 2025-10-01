@@ -231,6 +231,7 @@ export default {
         { name: 'Integration', label: 'Integration', icon: 'bi bi-plugin', path: '/integration/integration1' },
         { name: 'chatbot', label: 'Chatbot', path: '/chatbot/chatbotview', icon: 'bi bi-robot' },
         { name: 'Analytics', label: 'Analytics', path: '/analytics/cost', icon: 'bi bi-graph-up' },
+        { name: 'message-generator', label: 'Message Generator', icon: 'bi bi-lightbulb', path: '/message-generator' },
         // { name: 'AI Agent', label: 'AIagent', path: '/agent', icon: 'bi bi-robot' }
       ],
       user: null,

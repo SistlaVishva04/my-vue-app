@@ -1,3 +1,4 @@
+import MessageGenerator from "./components/MessageGenerator.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import BroadCast1 from "./components/broadcast/broadcast1.vue";
 import BroadCast2 from "./components/broadcast/broadcast2.vue";
@@ -14,6 +15,7 @@ import Settings from "./views/profileSettings.vue";
 import ChatbotView from "./components/chatbot/chatbotview.vue"; // Ensure this path is correct
 import CostAnalytics from "./components/PurchaseHistory/CostDashboard.vue";
 import Analytics from "./components/analytics/Analytics.vue";
+
 
 import TermsAndPrivacy from "./views/TermsAndPrivacy.vue";
 import { useToast } from "vue-toastification";
@@ -39,7 +41,8 @@ const routes = [
     component: DashboardView,
     meta: { requiresAuth: true },
     children: [
-      { path: "/agent", component: AIagent, name: "AIagent" },
+    { path: "/agent", component: AIagent, name: "AIagent" },
+    { path: "/message-generator", component: MessageGenerator, name: "MessageGenerator" },
       {
         path: "/analytics/cost",
         component: CostAnalytics,

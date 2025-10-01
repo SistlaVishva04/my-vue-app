@@ -520,12 +520,7 @@ export default {
     PopUp1
   }
   ,
-  props: {
-    contactReport: {
-      type: Object,
-      required: true,
-    },
-  },
+  // Removed unused contactReport prop to fix prop warning
   data() {
     return {
 

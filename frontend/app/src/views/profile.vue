@@ -64,7 +64,8 @@ export default {
     },
     user: {
       type: Object,
-      required: true
+      required: false,
+      default: () => ({})
     }
   },
   data() {
