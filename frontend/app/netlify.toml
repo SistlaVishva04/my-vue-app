@@ -1,0 +1,15 @@
+# netlify.toml
+
+[build]
+  # Directory containing your Vue app source code
+  base = "."
+  # Build command for Vue
+  command = "npm install && npm run build"
+  # Output directory after build
+  publish = "dist"
+
+# Redirect all requests to index.html (for Vue Router SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
