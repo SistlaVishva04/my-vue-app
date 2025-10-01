@@ -1,0 +1,13 @@
+[build]
+  base    = "frontend/app"       # The folder with your package.json
+  publish = "frontend/app/dist"  # Vue outputs build files to dist by default
+  command = "npm install && npm run build"
+
+[dev]
+  command = "npm run serve"
+  port = 5173
+  targetPort = 5173
+
+# Optional: Environment variables (if needed)
+# [build.environment]
+#   VUE_APP_API_URL = "http://localhost:8000"
