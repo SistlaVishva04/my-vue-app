@@ -40,3 +40,4 @@ htmlcov/
 .coverage
 .cache
 nos
+.env
